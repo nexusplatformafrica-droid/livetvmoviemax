@@ -1,0 +1,8 @@
+[
+ {"capability":"code","source":"code archive (Lovable TanStack app, last run on Replit)","outcome":"migrate","status":"done","next_action":"none"},
+ {"capability":"schema/records/auth","source":"none detected","outcome":"not applicable","status":"verified","next_action":"none"},
+ {"capability":"external provider: Magic 1Xtra TV feed (public, no key)","source":"src/lib/tv.functions.ts","outcome":"preserve","status":"verified","next_action":"none"},
+ {"capability":"public endpoint /api/sports-stream","source":"src/routes/api.sports-stream.ts","outcome":"preserve","status":"done","next_action":"none"},
+ {"capability":"secrets","source":"none required","outcome":"not applicable","status":"verified","next_action":"none"},
+ {"capability":"Replit runtime config (.replit, port 5000)","source":".replit, vite.config.ts","outcome":"drop (platform metadata)","status":"done","next_action":"none"}
+]

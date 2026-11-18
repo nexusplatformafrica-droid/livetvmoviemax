@@ -1,0 +1,17 @@
+# Roadmap
+- [x] Live TV page (reference layout, luofilm.site / Movie Max theme)
+- [x] Fit every screen with no page scroll
+- [x] Restore the original Movie Max design exactly; only change: buttons styled soft (Fortebet-style button set, softened). Keep the no-scroll fit.
+- [x] Sidebar: flat category row with the user's own icons (no tile/holder), TV icon for the LIVE tag
+- [x] Sidebar: selected category pink outline must not look cut at top/bottom
+- [x] Stream graph fills the empty space in the Stream stats box
+- [x] Channels come from the Magic 1Xtra TV feed (categories, All, search across all channels)
+- [x] YouTube-style player (floating control pills, auto-hide, settings/quality menu, unmute, PiP, fullscreen)
+- [x] Keep plain-http channels (e.g. Super Sport) listed (no lock) with an explanation in the player; they can't play (not relayed)
+- [x] Popular category first and default; Movie Max first in Popular with its logo; logo used as site logo + favicon
+- [x] Add the user's list of popular channels from the API to Popular
+- [x] Popular in the user's exact order + their direct links with logos; all channel names in capitals
+- [x] KIX: swap in the user's newer link (tokenised; expires within minutes — needs a lasting link)
+- [x] Super Sport channels start as fast as the others (stream pieces as they arrive, no background warm-up competing)
+- [x] Super Sport offline on the hosted preview: relay now reaches the server by name (hosting blocks bare-number addresses)
+- [x] Include the original website and app-owned channel logos at their existing public paths and verify they load.

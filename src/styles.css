@@ -1,0 +1,259 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * - Keep every @import in this top block, above @theme and the rest of the file. Install an
+ *   npm package before @importing its CSS. Never @import a remote URL (web fonts, CDN CSS): the
+ *   build resolves @import from the filesystem. Load those with a <link> in the head() of
+ *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+/* Phones held sideways: short landscape screens below the desktop breakpoint */
+/* Desktop windows tall enough for the bottom schedule bar */
+@custom-variant tall (@media (min-height: 820px));
+@custom-variant short (@media (orientation: landscape) and (max-height: 540px) and (max-width: 1023.98px));
+
+/*
+ * Design system definition.
+ *
+ * The design lives in this file: oklch color tokens on the shadcn variables
+ * (--background, --foreground, --primary, --secondary, --muted, --accent, ...) plus
+ * new tokens as needed, font tokens, and custom styles and animations.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-cyan: var(--cyan);
+  --color-panel: var(--panel);
+  --color-panel-raised: var(--panel-raised);
+  --color-frame: var(--frame);
+  --color-scrim: var(--scrim);
+  --color-glass: var(--glass);
+  --color-ch-news: var(--ch-news);
+  --color-ch-sport: var(--ch-sport);
+  --color-ch-science: var(--ch-science);
+  --color-ch-film: var(--ch-film);
+  --color-ch-kids: var(--ch-kids);
+  --color-ch-biz: var(--ch-biz);
+  --color-ch-music: var(--ch-music);
+  --font-sans: "Plus Jakarta Sans", "PingFang SC", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Movie Max / luofilm.site dark theme */
+  --background: oklch(0.145 0.005 264);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.19 0.007 264);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.21 0.007 264);
+  --popover-foreground: oklch(0.97 0 0);
+  --primary: oklch(0.62 0.3 325);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.26 0.008 264);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.22 0.007 264);
+  --muted-foreground: oklch(0.66 0.008 264);
+  --accent: oklch(0.72 0.18 152);
+  --accent-foreground: oklch(0.145 0.005 264);
+  --info: oklch(0.56 0.21 253);
+  --info-foreground: oklch(0.99 0 0);
+  --gold: oklch(0.86 0.13 85);
+  --gold-foreground: oklch(0.22 0.05 60);
+  --cyan: oklch(0.8 0.13 210);
+  --destructive: oklch(0.65 0.23 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(1 0 0 / 0.08);
+  --input: oklch(1 0 0 / 0.12);
+  --ring: oklch(0.62 0.3 325);
+  --panel: oklch(0.175 0.006 264);
+  --panel-raised: oklch(0.21 0.007 264);
+  --frame: oklch(0.165 0.006 264);
+  /* video player overlay */
+  --scrim: oklch(0 0 0 / 0.72);
+  --glass: oklch(0.13 0.004 264 / 0.66);
+
+  /* channel badge colours */
+  --ch-news: oklch(0.56 0.21 253);
+  --ch-sport: oklch(0.72 0.18 152);
+  --ch-science: oklch(0.8 0.13 210);
+  --ch-film: oklch(0.62 0.3 325);
+  --ch-kids: oklch(0.86 0.13 85);
+  --ch-biz: oklch(0.7 0.19 45);
+  --ch-music: oklch(0.68 0.2 25);
+
+  --gradient-rim: linear-gradient(90deg, oklch(0.72 0.18 152), oklch(0.8 0.13 210), oklch(0.56 0.21 253));
+  --gradient-hot: linear-gradient(135deg, oklch(0.62 0.3 325), oklch(0.56 0.21 253));
+  --gradient-panel: linear-gradient(180deg, oklch(0.2 0.007 264), oklch(0.165 0.006 264));
+  --shadow-frame: 0 40px 80px -30px oklch(0 0 0 / 0.8), 0 0 0 1px oklch(1 0 0 / 0.06);
+  --shadow-glow: 0 0 24px -4px color-mix(in oklab, var(--primary) 60%, transparent);
+  --shadow-soft: 0 6px 16px -6px color-mix(in oklab, var(--primary) 55%, transparent), inset 0 1px 0 oklch(1 0 0 / 0.18);
+  --shadow-soft-neutral: 0 6px 16px -8px oklch(0 0 0 / 0.6), inset 0 1px 0 oklch(1 0 0 / 0.14);
+
+  --chart-1: oklch(0.62 0.3 325);
+  --chart-2: oklch(0.72 0.18 152);
+  --chart-3: oklch(0.56 0.21 253);
+  --chart-4: oklch(0.86 0.13 85);
+  --chart-5: oklch(0.8 0.13 210);
+  --sidebar: oklch(0.175 0.006 264);
+  --sidebar-foreground: oklch(0.97 0 0);
+  --sidebar-primary: oklch(0.62 0.3 325);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.26 0.008 264);
+  --sidebar-accent-foreground: oklch(0.97 0 0);
+  --sidebar-border: oklch(1 0 0 / 0.08);
+  --sidebar-ring: oklch(0.62 0.3 325);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Gradient rim border used on the nav pill and active elements (luofilm style) */
+@utility rim {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(var(--frame), var(--frame)) padding-box,
+    var(--gradient-rim) border-box;
+}
+
+@utility rim-hot {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(var(--panel-raised), var(--panel-raised)) padding-box,
+    var(--gradient-hot) border-box;
+}
+
+@utility channel-logo-ring {
+  box-sizing: border-box;
+  display: grid;
+  flex: none;
+  width: 5.5rem;
+  height: 5.5rem;
+  place-items: center;
+  padding: 2px;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  background:
+    linear-gradient(var(--panel-raised), var(--panel-raised)) padding-box,
+    var(--gradient-hot) border-box;
+  box-shadow: 0 0 18px -8px color-mix(in oklab, var(--primary) 58%, transparent);
+}
+
+@utility bg-gradient-hot {
+  background-image: var(--gradient-hot);
+}
+
+@utility bg-gradient-panel {
+  background-image: var(--gradient-panel);
+}
+
+@utility shadow-frame {
+  box-shadow: var(--shadow-frame);
+}
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-soft-neutral {
+  box-shadow: var(--shadow-soft-neutral);
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(1 0 0 / 0.15) transparent;
+}
+
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+@utility animate-live {
+  animation: live-pulse 1.4s ease-in-out infinite;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes player-flash {
+  0% { opacity: 0.95; transform: scale(0.85); }
+  100% { opacity: 0; transform: scale(1.35); }
+}
+
+@utility animate-player-flash {
+  animation: player-flash 0.55s ease-out forwards;
+}
